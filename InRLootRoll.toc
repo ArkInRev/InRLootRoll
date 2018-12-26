@@ -1,0 +1,13 @@
+## Interface: 80100
+## Title: InRLootRoll
+## Version: 1.00
+## SavedVariables: INRLR_NOTIFY_MODE, INRLR_INCLUDE_BOE, INRLR_MIN_QUALITY, INRLR_MIN_ILVL, INRLR_DEBUG, INRLR_CURRENT_SPEC_ONLY, INRLR_CHECK_CHARACTER_LEVEL, INRLR_COORDINATE_ROLLS, INRLR_NOTIFY_GROUP, INRLR_HIGHLIGHT_RAID_FRAMES, INRLR_HIGHLIGHT_SIZE
+## Notes: Simplifies trading of personal loot by notifying you when a drop is not an upgrade for the looter, but is an upgrade for you or others in your group.
+## Author: Madone-Zul'Jin modified for old usage by Ark-Zul'Jin
+
+InRLootRoll-Constants.lua
+InRLootRoll-Trinkets.lua
+InRLootRoll-Util.lua
+InRLootRoll-Config.lua
+InRLootRoll-Core.lua
+
