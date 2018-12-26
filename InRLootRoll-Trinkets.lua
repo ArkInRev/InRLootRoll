@@ -7,6 +7,15 @@ to easily populate these arrays:
 	to obtain IDs: http://www.wowhead.com/items/armor/trinkets/role:1?filter=166:151;7:1;0:0#0-3+2
 ]]--	
 INRLR_TRINKET_AGILITY_DPS = {
+	-- 8.1 trinkets
+	165568, -- Invocation of Yu'lon
+	165579, -- Kinbul's Razor Claw
+	165572, -- Variable Intensity Gigavolt Oscillating Reactor
+
+	-- 8.0 trinkets
+	160648, 	-- Frenetic Corpuscle
+	160652, 	-- Construct Overcharger
+	
 	-- 7.3 trinkets
 	152288, -- 7.3 Raid - Antorus - Boss 11 - Trinket Ranged WS
 	152285, -- 7.3 Raid - Antorus - Boss 11 - Trinket Melee Str WS
@@ -109,6 +118,17 @@ INRLR_TRINKET_AGILITY_DPS = {
 }
 
 INRLR_TRINKET_INTELLECT_DPS = {
+	-- 8.1 trinkets
+	165571, -- Incandescent Sliver
+	165581, -- Crest of Pa'ku
+	165576, -- Tidestorm Codex
+	166418, -- Crest of Pa'ku
+	
+	-- 8.0 trinkets
+	160656, 	-- Twitching Tentacle of Xalzaix
+	160651,	-- Vigilant's Bloodshaper
+	
+
 	-- 7.3 trinkets
 	152288, -- 7.3 Raid - Antorus - Boss 11 - Trinket Ranged WS
 	151970, -- Vitality Resonator
@@ -185,6 +205,15 @@ INRLR_TRINKET_INTELLECT_DPS = {
 }
 
 INRLR_TRINKET_STRENGTH_DPS = {
+	-- 8.1 trinkets
+	165570, -- Everchill Anchor
+	165574, -- Grong's Primal Rage
+	165580, -- Ramping Amplitude Gigavolt Engine
+
+	-- 8.0 trinkets
+	160655, 	-- Syringe of Bloodborne Infirmity
+	160650, 	-- Disc of Systematic Regression
+	
 	-- 7.3 trinkets
 	152285, -- 7.3 Raid - Antorus - Boss 11 - Trinket Melee Str WS
 	152701, -- 7.3 Raid - Antorus - Boss 11 - Trinket Melee Agi WS
@@ -261,6 +290,17 @@ INRLR_TRINKET_STRENGTH_DPS = {
 }
 
 INRLR_TRINKET_HEALER = {
+	--8.1 trinkets
+	165578, -- Mirror of Entwined Fate
+	165571, -- Incandescent Sliver
+	165569, -- Ward of Envelopment
+	165581, -- Crest of Pa'ku
+	166418, -- Crest of Pa'ku
+	
+	-- 8.0 trinkets
+	160656, 	-- Twitching Tentacle of Xalzaix
+	160649, 	-- Inoculating Extract
+	
 	-- 7.3 trinkets
 	152288, -- 7.3 Raid - Antorus - Boss 11 - Trinket Ranged WS
 	151959, -- 7.3 Raid - Antorus - Boss 11 - Trinket Healer WS
@@ -362,6 +402,16 @@ INRLR_TRINKET_HEALER = {
 }
 
 INRLR_TRINKET_TANK = {
+	-- 8.1 trinkets
+	165573, -- Diamond-laced Refracting Prism
+	165577, -- Bwonsamdi's Bargain
+	
+	-- 8.0 trinkets
+	160648, -- Frenetic Corpuscle
+	160652, -- Construct Overcharger
+	160654,	-- Vanquished Tendril of G'huun, 
+	160653,	-- Xalzaix's Veiled Eye
+
 	-- 7.3 trinkets
 	152287, -- 7.3 Raid - Antorus - Boss 11 - Trinket Tank WS
 	151976, -- Riftworld Codex
