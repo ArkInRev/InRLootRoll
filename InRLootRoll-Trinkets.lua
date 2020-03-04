@@ -7,6 +7,13 @@ to easily populate these arrays:
 	to obtain IDs: http://www.wowhead.com/items/armor/trinkets/role:1?filter=166:151;7:1;0:0#0-3+2
 ]]--	
 INRLR_TRINKET_AGILITY_DPS = {
+	-- 8.3 trinkets
+	174044, -- Humming Black Dragonscale
+	173946, -- Writhing Segment of Drest'agath
+	174528, -- Void-Twisted Titanshard
+	173943, -- Torment in a Jar 
+	174500, -- Vita-Charged Titanshard
+	
 	-- 8.1 trinkets
 	165568, -- Invocation of Yu'lon
 	165579, -- Kinbul's Razor Claw
@@ -118,6 +125,14 @@ INRLR_TRINKET_AGILITY_DPS = {
 }
 
 INRLR_TRINKET_INTELLECT_DPS = {
+	-- 8.3 trinkets
+	174044, -- Humming Black Dragonscale
+	174060, -- Psyche Shredder
+	174103, -- Manifesto of Madness
+	174528, -- Void-Twisted Titanshard
+	174500, -- Vita-Charged Titanshard
+	173944, -- Forbidden Obsidian Claw
+	
 	-- 8.1 trinkets
 	165571, -- Incandescent Sliver
 	165581, -- Crest of Pa'ku
@@ -205,6 +220,13 @@ INRLR_TRINKET_INTELLECT_DPS = {
 }
 
 INRLR_TRINKET_STRENGTH_DPS = {
+	-- 8.3 trinkets
+	174044, -- Humming Black Dragonscale
+	173946, -- Writhing Segment of Drest'agath
+	174528, -- Void-Twisted Titanshard
+	173943, -- Torment in a Jar 
+	174500, -- Vita-Charged Titanshard
+	
 	-- 8.1 trinkets
 	165570, -- Everchill Anchor
 	165574, -- Grong's Primal Rage
@@ -290,6 +312,13 @@ INRLR_TRINKET_STRENGTH_DPS = {
 }
 
 INRLR_TRINKET_HEALER = {
+	-- 8.3 trinkets
+	174044, -- Humming Black Dragonscale
+	174180, -- Oozing Coagulum
+	174103, -- Manifesto of Madness
+	174528, -- Void-Twisted Titanshard
+	174500, -- Vita-Charged Titanshard
+	
 	--8.1 trinkets
 	165578, -- Mirror of Entwined Fate
 	165571, -- Incandescent Sliver
@@ -402,6 +431,14 @@ INRLR_TRINKET_HEALER = {
 }
 
 INRLR_TRINKET_TANK = {
+	-- 8.3 trinkets
+	174044, -- Humming Black Dragonscale
+	174277, -- Lingering Psychic Shell
+	174528, -- Void-Twisted Titanshard
+	174500, -- Vita-Charged Titanshard
+	173940, -- Sigil of Warding
+	173944, -- Forbidden Obsidian Claw
+	
 	-- 8.1 trinkets
 	165573, -- Diamond-laced Refracting Prism
 	165577, -- Bwonsamdi's Bargain
