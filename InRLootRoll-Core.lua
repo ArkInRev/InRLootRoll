@@ -1820,8 +1820,8 @@ local function BNWhisperReceivedEvent(self, event, ...)
 	local message = ...
 
 	local bnetIDAccount = select(13, ...)
-	local bnetIDGameAccount = select(6, BNGetFriendInfoByID(bnetIDAccount));
-	local _, sender, _, realmName = BNGetGameAccountInfo(bnetIDGameAccount)
+	local bnetIDGameAccount = select(6, C_BattleNet.GetAccountInfoByID(bnetIDAccount));
+	local _,_,_,_,_,_, sender,realmName = C_BattleNet.GetGameAccountInfoByID(bnetIDAccount)
 
 	if realmName ~= nil then
 		sender = sender .. '-' .. realmName
