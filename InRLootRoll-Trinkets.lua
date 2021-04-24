@@ -7,6 +7,14 @@ to easily populate these arrays:
 	to obtain IDs: http://www.wowhead.com/items/armor/trinkets/role:1?filter=166:151;7:1;0:0#0-3+2
 ]]--	
 INRLR_TRINKET_AGILITY_DPS = {
+	-- 9.0 trinkets
+	184030, -- Dreadfire Vessel
+	184026, -- Hateful Chain
+	184024, -- Macabre Sheet of Music
+	184025, -- Memory of Past Sins
+	184016, -- Skulker's Wing
+	184027, -- Stone Legion Heraldry
+
 	-- 8.3 trinkets
 	174044, -- Humming Black Dragonscale
 	173946, -- Writhing Segment of Drest'agath
@@ -125,6 +133,13 @@ INRLR_TRINKET_AGILITY_DPS = {
 }
 
 INRLR_TRINKET_INTELLECT_DPS = {
+	-- 9.0 trinkets
+	184028, -- Cabalist's Hymnal
+	184030, -- Dreadfire Vessel
+	184021, -- Glyph of Assimilation
+	184024, -- Macabre Sheet of Music
+	184019, -- Soul Igniter
+	
 	-- 8.3 trinkets
 	174044, -- Humming Black Dragonscale
 	174060, -- Psyche Shredder
@@ -220,6 +235,14 @@ INRLR_TRINKET_INTELLECT_DPS = {
 }
 
 INRLR_TRINKET_STRENGTH_DPS = {
+	-- 9.0 trinkets
+	184030, -- Dreadfire Vessel
+	184023, -- Gluttonous Spike
+	184024, -- Macabre Sheet of Music
+	184025, -- Memory of Past Sins
+	184016, -- Skulker's Wing
+	184027, -- Stone Legion Heraldry
+
 	-- 8.3 trinkets
 	174044, -- Humming Black Dragonscale
 	173946, -- Writhing Segment of Drest'agath
@@ -312,6 +335,14 @@ INRLR_TRINKET_STRENGTH_DPS = {
 }
 
 INRLR_TRINKET_HEALER = {
+
+	-- 9.0 trinkets
+	184028, -- Cabalist's Hymnal
+	184022, -- Consumptive Infusion
+	184024, -- Macabre Sheet of Music
+	184029, -- Manabound Mirror
+	184020, -- Tuft of Smoldering Plumage
+
 	-- 8.3 trinkets
 	174044, -- Humming Black Dragonscale
 	174180, -- Oozing Coagulum
@@ -431,6 +462,16 @@ INRLR_TRINKET_HEALER = {
 }
 
 INRLR_TRINKET_TANK = {
+
+	-- 9.0 trinkets
+	184017, -- Bargast's Leash
+	184026, -- Hateful Chain
+	184023, -- Gluttonous Spike
+	184024, -- Macabre Sheet of Music
+	184016, -- Skulker's Wing
+	184018, -- Splintered Heart of Al'ar
+	184027, -- Stone Legion Heraldry
+
 	-- 8.3 trinkets
 	174044, -- Humming Black Dragonscale
 	174277, -- Lingering Psychic Shell

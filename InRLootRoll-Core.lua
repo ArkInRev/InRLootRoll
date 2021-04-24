@@ -39,6 +39,10 @@ When PLH becomes disabled, set isAnnouncer to false
 	
 Changelog
 
+20201217 - 1.10
+	Added 9.0 Trinkets
+	Updated BNet whisper deprecated functions
+
 20170902 - 1.32
 	Added 7.3 trinkets	
 	Updated PlaySound() calls to use IDs instead of strings, in accordance with Blizz API change in 7.3
@@ -399,7 +403,7 @@ local NOTIFY_MODE_COORDINATE_ROLLS = 3
 
 local DEFAULT_NOTIFY_MODE = NOTIFY_MODE_SELF
 local DEFAULT_INCLUDE_BOE = false
-local DEFAULT_MIN_ILVL = 528  -- personal loot was introduced with Siege of Orgrimmar, which started at ilvl 528
+local DEFAULT_MIN_ILVL = 20  -- personal loot was introduced with Siege of Orgrimmar, which started at ilvl 528
 local DEFAULT_MIN_QUALITY = 3  -- Rare
 local DEFAULT_DEBUG = true
 local DEFAULT_CURRENT_SPEC_ONLY = false
