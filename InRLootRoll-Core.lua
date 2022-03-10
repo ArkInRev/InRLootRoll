@@ -1,7 +1,7 @@
 --[[
 
 -----------------------------------------------
-Announce logic psuedocode 
+Announce logic psuedocode
 
 Default isAnnouncer to false
 
@@ -9,7 +9,7 @@ In PerformNotify:
 	If Notify Group
 		If self is group lead
 			isAnnouncer = true
-		Else	
+		Else
 			Request announce via SendAddonMessage, telling them whether you're the group lead
 			Wait 300ms, queue responses
 			If no response in 300ms
@@ -32,53 +32,59 @@ In AddonMessage listener:
 				If other addon is not group leader, tell other addon you're the announcer
 				Else isAnnouncer = false
 			Else tell other addon your character name
-	
+
 When you change your options to turn Notify Group off, set isAnnouncer back to false
-When PLH becomes disabled, set isAnnouncer to false	
------------------------------------------------	
-	
+When PLH becomes disabled, set isAnnouncer to false
+-----------------------------------------------
+
 Changelog
+
+20220309 - 1.11
+	Added 9.2 trinkets
+	Added Item list of 9.2 Tier tokens for rolls
+	Added Pets and Mounts are now eligible for characters to roll on.
+	Fixed Substring search for class eligibility on items. 
 
 20201217 - 1.10
 	Added 9.0 Trinkets
 	Updated BNet whisper deprecated functions
 
 20170902 - 1.32
-	Added 7.3 trinkets	
+	Added 7.3 trinkets
 	Updated PlaySound() calls to use IDs instead of strings, in accordance with Blizz API change in 7.3
 
 20170627 - 1.31
 	Added 7.2.5 trinkets
-	
+
 20170403 - 1.30
 	note:  commented out some extraneous debug info
-	
+
 20170401 - 1.29
 	Fixed bugs that were sometimes causing PLH to not properly cache equipped items for all players in the group
 		note: commented out extra call to INRLR_InspectNextGroupMember in the outer loop portion of INRLR_InspectNextGroupMember
 		note: Separated INRLR_wait into multiple methods to eliminate concurrency issues
 		note: reduced DELAY_BETWEEN_INSPECTIONS from 3 to 1 (seconds)
-	
+
 20170331 - 1.28
 	Fixed new bug with 7.2 that was sometimes preventing PLH from activating when reloading UI or entering an instance
 		note: added ZONE_CHANGED_NEW_AREA and PLAYER_ENTERING_WORLD in Initialize()
 
 	Added sorting of names by ilvl when more than one person can use an item
 		note: in GetNames
-		
+
 	note: reduced NUM_EXPECTED_RELICS_110 from 3 to 2 so we reduce inspect retries; many people (in lfr at least) still don't have 3
 	note: increased MAX_INSPECT_LOOPS from 3 to 4
-	
+
 20170329 - 1.27
 	Increased inspect attempts back to 5; this may have been causing some characters' gear to not be fully inspected and thus missing recommendations
-	
+
 	Minor additional error checking
 		note: additional nil check in AskForRolls()
 
 20170328 - 1.26
 	Bug fixes to "coordinate rolls" mode - sometimes trades were being ignored
 		note: removed extra spaces in ProcessWhisper, added nil check for description in CheckForRolls
-	
+
 20170328 - 1.25
 	Added eligibility check for class-restricted gear (ex: tier)
 	Significant performance/memory improvements
@@ -91,14 +97,14 @@ Changelog
 		note: reduced MAX_INSPECTS_PER_CHARACTER
 
 	Updated to WoW client 7.2
-	
+
 20170327 - 1.24
 	Permitted offspec rolls regardless of the "current spec only" option (in "coordinate rolls" mode)
 		note: parameter added to IsEquippableItemForCharacter
-	
+
 20170323 - 1.23
 	Added 7.2 trinkets
-	
+
 20170312 - 1.22
 	Fixed bug that could cause raid frames to be non-responsive after PLH showed loot in them
 		note:  hide tooltip in UnhighlightRaidFrames()
@@ -108,16 +114,16 @@ Changelog
 		you may want and to make it easier to compare that loot to what you have equipped (hold shift over item for comparison).
 		A future version of PLH will also indicate players who can receive items you've looted directly in the raid frames.
 	note:  added INRLR_HIGHLIGHT_RAID_FRAMES, HighlightRaidFrames(), and related
-		
+
 	Added option to exclude notifications if character level is too low to equip an item
 		note: added INRLR_CHECK_CHARACTER_LEVEL
 
 	Decoupled "coordinate rolls" mode from "notify group" mode, and enabled raid assistants to perform roll coordination
 		note: added INRLR_COORDINATE_ROLLS and INRLR_NOTIFY_GROUP; removed references to INRLR_NOTIFY_MODE except to set values of the new global variables
-		
+
 	Removed case sensitivity from trade whispers when "coordinate rolls" is active; also permitted "[item] trade" in addition to existing "trade [item]"
 		note: in ProcessWhisper()
-	
+
 20170218 - 1.20
 	Added check to see if a character is a high enough level to equip an item that drops (to fix recommendations in holiday and TW dungeons)
 		note:  added check in IsEquippableItemForCharacter
@@ -130,7 +136,7 @@ Changelog
 	Fixed bug that was cauing PLH to activate even if loot method was set to "Master Looter"
 
 	Disabled PLH in BGs & arena
-	
+
 	Removed PLH enabled/PLH disabled announcements
 
 	Removed PLH whispers (for coordinate rolls mode);
@@ -146,10 +152,10 @@ Changelog
 
 	Fixed bug that was causing rolls for off-spec relics to be incorrectly ignored
 		note:  added off-spec relic check back into IsEquippableItemForCharacter
-		
+
 20161025 - 1.17
 	Updated for 7.1
-	
+
 20161015 - 1.16
 	Public
 		Added ability for players to whisper the roll coordinator with 'trade [item]' in Coordinate Rolls mode to initiate rolls for a specific item; for example, when PLH can't determine their item is tradeable because they have lower ilvl equipped but higher ilvl in their bags
@@ -169,17 +175,17 @@ Changelog
 		Set default Notify Mode to "self" instead of "group" for new users
 		Resolved bug where sometimes PLH would tell someone their loot wasn't found after notifying them in Coordinate Rolls mode
 		Resolved bug where sometimes high rolls would be incorrectly ignored in Coordinate Rolls mode
-		
+
 	Private
 		Added LFR check to PerformNotify
 		Changed value of DEFAULT_NOTIFY_MODE to "self"
 		Added realm checked to sender name in WhisperReceivedEvent
 		Added tonumber in INRLR_EndRolls()
-	
+
 20160921 - 1.14
 	Public
 		Fixed bug that caused options to reset upon login for users who also have the addon Oilvl (or other addons that call the options panel 'okay' behind the scenes) installed
-		
+
 	Private
 		Create options panel after ADDON_LOADED event
 		Set checkboxes on options panel during panel creation vs. waiting for the OnShow event
@@ -187,7 +193,7 @@ Changelog
 20160920 - 1.13
 	Public
 		Fixed bug that was causing PLH to evaluate loot received via bonus roll
-	
+
 	Detailed
 		Added LOOT_ITEM_SELF_PATTERN and LOOT_ITEM_PATTERN
 
@@ -195,7 +201,7 @@ Changelog
 	Public
 		Limited the maximum number of times that we inspect a character vs. continually trying to inspect them if they're missing a relic or piece of gear
 		Redesigned the interface options screen to update checkboxes when the frame is displayed vs. updating for each checkbox
-	
+
 	Detailed
 		Added InspectCount to groupInfoCache
 		Many changes to config
@@ -206,7 +212,7 @@ Changelog
 20160917 - 1.11
 	Public
 		Fixed options panel to use unique names for each checkbox frame, hopefully resolving the issue that some users experienced of settings resetting
-	
+
 	Detailed
 		Changed to expect 2 relics instead of 1 relic at level 110
 		Fix taint error on _ in GetEquippedRelic
@@ -217,7 +223,7 @@ Changelog
 20160914 - 1.10
 	Public
 		Added international client support
-	
+
 	Detailed
 		Localization in:
 			LootReceivedEvent (use arguments vs. string parse)
@@ -228,12 +234,12 @@ Changelog
 			IsRelic (use item class/subclass)
 			ValidGear (use item class/subclass)
 			IsTrinketUsable - use item ID instead of item name
-			
+
 20160913 - 1.9
 	Public
 		Fixed bug that caused relics to be ignored
 		Eliminated loading of unit test file - saves memory and may prevent the setting reset issue that some are having
-		
+
 	Detailed
 		Added relic check to ShouldBeEvaluated
 		Added hack to UpdateGroupInfoCache to check item 2nd time to hopefully fully cache it
@@ -245,7 +251,7 @@ Changelog
 		Added support for trinkets that Wowhead identifies as being usable by "unknown":  Ettin Fingernail, Padawsen's Unlucky Charm, Unstable Arcanocrystal, Thrice-Accursed Compass, Chrono Shard, and Horn of Valor
 		Fixed bug when checking eligibility during rolls in Coordinate Rolls mode
 		Fixed LUA error reported in ticket #2
-	
+
 	Detailed
 		Added trinkets that have an "unknown" usable by attribute per wowhead:  http://www.wowhead.com/items/armor/trinkets/role:6?filter=166;7;0
 		Check for fullname in RollReceivedEvent
@@ -269,16 +275,16 @@ Changelog
 	Public
 		Fixed bugs that could rarely cause LUA errors
 		Fixed issue that could result in an excessive number of requests to inspect players who only have 1 relic slotted
-	
+
 	Detailed
 		Added nil check to INRLR_GetUnitNameWithRealm
 		Made variable local in INRLR_GetUnitGUIDFromFullname
 		Reduced NUM_EXPECTED_RELICS from 2 to 1 since many people still seem to only have 1 relic equipped even at level 110!
-	
+
 20160908 - 1.5
 	Public
 		Fixed bug that could cause addon options to reset (for real this time!)
-		
+
 	Detailed
 		Added check to Initialize to ensure this addon was the source of the ADDON_LOADED event
 
@@ -289,7 +295,7 @@ Changelog
 
 	Known Limitations
 		Personal Loot Helper cannot determine whether an Artifact Relic is an upgrade for a character's offspec since it has no way of determining what relics are slotted into the offspec Artifact
-	
+
 	Detailed
 		Added ValidRelics, INRLR_GetRelicType, GetEquippedRelic
 		Added relic evaluation to IsEquippableItemForCharacter and IsAnUpgradeForCharacter
@@ -309,13 +315,13 @@ Changelog
 		Increased MAX_NAMES_TO_SHOW from 3 to 4
 		Commented out some debug statements and calls to INRLR_PrintCache to reduce debug spam
 		Modified text in PerformNotify
-	
+
 20160901 - 1.2
 	Public
 		Added ability for users to limit evaluations to characters' current spec only (in interface options); by default, PLH will consider an item as a possible upgrade as long as it is usable by ANY of the character's possible specilizations
 		Added cache refreshes when players change specs or change equipped gear to ensure evaluations are done with up-to-date spec/gear
 		Added support for evaluating whether Legion trinkets are upgrades based on class/spec.  Note that pre-Legion trinkets will not be evaluated.
-	
+
 	Detailed
 		Added INRLR_CURRENT_SPEC_ONLY to IsAnUpgradeForCharacter and interface options screen
 		Added PLAYER_SPECIALIZATION_CHANGED listener to update cache when a group member's spec changes
@@ -332,7 +338,7 @@ Changelog
 		Fixed evaluation of cloaks; previously only considered cloth-wearers as eligible to equip cloaks
 		Minor performance improvements, particularly when in a large raid group
 		Fixed /plh to open directly to Personal Loot Helper options on first try
-		
+
 	Detailed
 		In PopulateGroupCache(), only refresh cache if it has been more than 3 seconds since the last refresh
 		In IsCharacterInGroup, eliminate redundant call to GetRaidRosterInfo()
@@ -341,7 +347,7 @@ Changelog
 		In IsEquippableItemForCharacter, consider the item equippable for every class if it's a cloak
 		In IsEquippableItemForCharacter, evaluate the character's spec vs. the primary attribute of the item
 		Added INRLR_TestItems()
-		
+
 The general flow is as follows:
 LootReceivedEvent()				triggered when loot is received by anyone in the group
   --> PerformNotify()			if loot is a tradeable and is an upgrade for someone in group, notifies based on users' preferred Notify Mode
@@ -382,7 +388,7 @@ TODO Refactoring
 			easy way to test this:  change implementation of INRLR_GetUnitNameWithRealm(unit) to call UnitFullName(unit) and see
 			what happens!
 	comments - update to reflect the approach to looping logic; just using outer loop now; no inner retry logic
-  
+
 Future enhancement ideas:
 	if you have addon installed, get a popup to decide what to do vs. a whisper?
 	option for roll timers - auto-finish rolls after [X] seconds or never, timers for roll warnings
@@ -633,39 +639,39 @@ local ValidRelics = {
 -- IDs for following are from http://wow.gamepedia.com/API_GetInspectSpecialization
 local PrimaryAttributes = {
 	{ DEATH_KNIGHT, 'Any', ITEM_MOD_STRENGTH_SHORT },
-	
+
 	{ DEMON_HUNTER, 'Any', ITEM_MOD_AGILITY_SHORT },
-	
+
 	{ DRUID, 102, ITEM_MOD_INTELLECT_SHORT },			-- balance
 	{ DRUID, 103, ITEM_MOD_AGILITY_SHORT },			-- feral
 	{ DRUID, 104, ITEM_MOD_AGILITY_SHORT },			-- guardian
 	{ DRUID, 105, ITEM_MOD_INTELLECT_SHORT },			-- restoration
-	
+
 	{ HUNTER, 'Any', ITEM_MOD_AGILITY_SHORT },
-	
+
 	{ MAGE, 'Any', ITEM_MOD_INTELLECT_SHORT },
 
 	{ MONK, 268, ITEM_MOD_AGILITY_SHORT },				-- brewmaster
 	{ MONK, 270, ITEM_MOD_INTELLECT_SHORT },			-- mistweaver
 	{ MONK, 269, ITEM_MOD_AGILITY_SHORT },				-- windwalker
-	
+
 	{ PALADIN, 65, ITEM_MOD_INTELLECT_SHORT },			-- holy
 	{ PALADIN, 66, ITEM_MOD_STRENGTH_SHORT },			-- protection
 	{ PALADIN, 70, ITEM_MOD_STRENGTH_SHORT },			-- retribution
 
 	{ PRIEST, 'Any', ITEM_MOD_INTELLECT_SHORT },
-	
+
 	{ ROGUE, 'Any', ITEM_MOD_AGILITY_SHORT },
 
 	{ SHAMAN, 262, ITEM_MOD_INTELLECT_SHORT },			-- elemental
 	{ SHAMAN, 263, ITEM_MOD_AGILITY_SHORT },			-- enhancement
 	{ SHAMAN, 264, ITEM_MOD_INTELLECT_SHORT },			-- restoration
-	
+
 	{ WARLOCK, 'Any', ITEM_MOD_INTELLECT_SHORT },
-	
+
 	{ WARRIOR, 'Any', ITEM_MOD_STRENGTH_SHORT }
 }
-	
+
 local OffspecAttributes = {
 	{ DRUID, 102, ITEM_MOD_AGILITY_SHORT },			-- balance
 	{ DRUID, 103, ITEM_MOD_INTELLECT_SHORT },			-- feral
@@ -683,7 +689,7 @@ local OffspecAttributes = {
 	{ SHAMAN, 262, ITEM_MOD_AGILITY_SHORT },			-- elemental
 	{ SHAMAN, 263, ITEM_MOD_INTELLECT_SHORT },			-- enhancement
 	{ SHAMAN, 264, ITEM_MOD_AGILITY_SHORT }			-- restoration
-	
+
 }
 
 -- note that the following is only valid for Legion; previously different weapons were possible (ex: feral staff vs. 2 fist weapons)
@@ -692,19 +698,19 @@ local ExpectedItemCount = {			-- number of items expected by spec, assuming pers
 	{ DEATH_KNIGHT, 250, 15 },			-- blood
 	{ DEATH_KNIGHT, 251, 16 },			-- frost
 	{ DEATH_KNIGHT, 252, 15 },			-- unholy
-	
+
 	{ DEMON_HUNTER, 577, 16 },			-- havoc
 	{ DEMON_HUNTER, 581, 16 },			-- vengeance
-	
+
 	{ DRUID, 102, 15 },					-- balance
 	{ DRUID, 103, 16 },					-- feral
 	{ DRUID, 104, 16 },					-- guardian
 	{ DRUID, 105, 15 },					-- restoration
-	
+
 	{ HUNTER, 253, 15 },					-- beast mastery
 	{ HUNTER, 254, 15 },					-- marksmanship
 	{ HUNTER, 255, 15 },					-- survival
-	
+
 	{ MAGE, 62, 15 },						-- arcane
 	{ MAGE, 63, 16 },						-- fire
 	{ MAGE, 64, 15 },						-- frost
@@ -712,7 +718,7 @@ local ExpectedItemCount = {			-- number of items expected by spec, assuming pers
 	{ MONK, 268, 15 },					-- brewmaster
 	{ MONK, 270, 15 },					-- mistweaver
 	{ MONK, 269, 16 },					-- windwalker
-	
+
 	{ PALADIN, 65, 15 },					-- holy
 	{ PALADIN, 66, 16 },					-- protection
 	{ PALADIN, 70, 15 },					-- retribution
@@ -720,7 +726,7 @@ local ExpectedItemCount = {			-- number of items expected by spec, assuming pers
 	{ PRIEST, 256, 15 },					-- discipline
 	{ PRIEST, 257, 15 },					-- holy
 	{ PRIEST, 258, 16 },					-- shadow
-	
+
 	{ ROGUE, 259, 16 },					-- assassination
 	{ ROGUE, 260, 16 },					-- outlaw
 	{ ROGUE, 261, 16 },					-- subtlety
@@ -728,11 +734,11 @@ local ExpectedItemCount = {			-- number of items expected by spec, assuming pers
 	{ SHAMAN, 262, 16 },					-- elemental
 	{ SHAMAN, 263, 16 },					-- enhancement
 	{ SHAMAN, 264, 16 },					-- restoration
-	
+
 	{ WARLOCK, 256, 15 },					-- affliction
 	{ WARLOCK, 266, 16 },					-- demonology
 	{ WARLOCK, 267, 15 },					-- destruction
-	
+
 	{ WARRIOR, 71, 15 },					-- arms
 	{ WARRIOR, 72, 16 },					-- fury
 	{ WARRIOR, 73, 16 }					-- protection
@@ -775,7 +781,7 @@ local LOOT_ITEM_SELF_PATTERN = _G.LOOT_ITEM_SELF
 	  LOOT_ITEM_SELF_PATTERN = LOOT_ITEM_SELF_PATTERN:gsub('%%s', '(.+)')
 local LOOT_ITEM_PATTERN = _G.LOOT_ITEM
 	  LOOT_ITEM_PATTERN = LOOT_ITEM_PATTERN:gsub('%%s', '(.+)')
-	  
+
 -- set up variables that will cache group member's information
 local groupInfoCache = {}  -- array keyed by name-realm paired with a list of slotid-items
 local maxInspectIndex = 0  -- the index of the last character in GetRaidRosterInfo(); must be < inspectIndex to start with so PopulateGroupInfoCache can start inspections
@@ -812,6 +818,7 @@ local FII_IS_RELIC = "IS_RELIC"							-- true if item is a relic, false otherwis
 local FII_REAL_ILVL = "REAL_ILVL"						-- real ilvl, derived from tooltip
 local FII_RELIC_TYPE = "RELIC_TYPE"						-- relic type, derived from tooltip
 local FII_CLASSES = "CLASSES"							-- uppercase string of classes that can use the item (ex: tier); nil if item is not class-restricted
+local FII_IS_TIER = "IS_TIER"							-- true if item is in the tier lists, false otherwise
 
 local INRLR_CLASSES_ALLOWED_PATTERN = _G.ITEM_CLASSES_ALLOWED
 	  INRLR_CLASSES_ALLOWED_PATTERN = INRLR_CLASSES_ALLOWED_PATTERN:gsub('%%s', '(.+)')  -- 'Classes: (.+)'
@@ -826,7 +833,7 @@ creates an empty tooltip that is ready to be populated with the information from
 	4 - Upgrade Level: 2/2, nil
 	5 - Binds when picked up, nil
 	6 - Head, Leather
-	
+
 	rows - how many rows of the tooltip to populate; prior to version 1.24 we only cared about the first 6 rows, but to find the "classes:" row we have to go much deeper
 ]]--
 local function CreateEmptyTooltip(rows)
@@ -847,11 +854,31 @@ local function CreateEmptyTooltip(rows)
     return tip
 end
 
+local function IsTierPiece(item)
+	local itemLink = select(2, GetItemInfo(item))
+	local itemID = string.match(itemLink, 'item:(%d+):')
+
+	local tierPieceList = nil
+		tierPieceList = INRLR_TIER_PIECE_LIST
+
+
+	local i
+	if tierPieceList ~= nil then
+		for i = 1, #tierPieceList do
+			if tostring(tierPieceList[i]) == itemID then
+				return true
+			end
+		end
+	end
+
+	return false
+end
+
 local function GetFullItemInfo(item)
 	fullItemInfo = {}
 	if item ~= nil then
 		fullItemInfo[FII_ITEM] = item
-		
+
 		-- determine the basic values from the Blizzard GetItemInfo() API call
 		fullItemInfo[FII_NAME],
 			fullItemInfo[FII_LINK],
@@ -875,9 +902,11 @@ local function GetFullItemInfo(item)
 		-- determine whether the item is equippable & whether it is a relic
 		fullItemInfo[FII_IS_EQUIPPABLE] = IsEquippableItem(item)
 		fullItemInfo[FII_IS_RELIC] = fullItemInfo[FII_CLASS] == LE_ITEM_CLASS_GEM and fullItemInfo[FII_SUB_CLASS] == LE_ITEM_ARMOR_RELIC
+		fullItemInfo[FII_IS_TIER] = IsTierPiece(item)
 
-		-- we only need to determine other values if it's an equippable item or a relic
-		if fullItemInfo[FII_IS_EQUIPPABLE] or fullItemInfo[FII_IS_RELIC] then
+
+		-- we only need to determine other values if it's an equippable item or a relic or a in the tier list
+		if fullItemInfo[FII_IS_EQUIPPABLE] or fullItemInfo[FII_IS_RELIC] or fullItemInfo[FII_IS_TIER] then
 
 			-- set up the tooltip to determine values that aren't returned via GetItemInfo()
 			local rows = 30
@@ -915,7 +944,7 @@ local function GetFullItemInfo(item)
 				while not relicType and tooltip.leftside[index] do
 					t = tooltip.leftside[index]:GetText()
 					if t ~= nil then
-						relicType = t:match(INRLR_RELIC_TOOLTIP_TYPE_PATTERN)				
+						relicType = t:match(INRLR_RELIC_TOOLTIP_TYPE_PATTERN)
 					end
 					index = index + 1
 				end
@@ -1001,7 +1030,7 @@ function INRLR_GetItemCountFromCache(name)
 		itemCount = itemCount - 4 -- subtract 3 since everyone has ClassName and Spec and Level and InspectCount elements
 		itemCount = itemCount - INRLR_GetRelicCountFromCache(name)
 	else
-		INRLR_SendDebugMessage('groupInfoCache[name] is nil for ', name)	
+		INRLR_SendDebugMessage('groupInfoCache[name] is nil for ', name)
 	end
 	return itemCount
 end
@@ -1082,7 +1111,7 @@ local function IsTrinketUsable(item, role)
 	elseif role == 'Tank' then
 		trinketList = INRLR_TRINKET_TANK
 	end
-	
+
 	local i
 	if trinketList ~= nil then
 		for i = 1, #trinketList do
@@ -1091,7 +1120,7 @@ local function IsTrinketUsable(item, role)
 			end
 		end
 	end
-	
+
 	return false
 end
 
@@ -1115,7 +1144,7 @@ local function IsEquippableItemForCharacter(fullItemInfo, characterName, current
 	local isEquippableForSpec = false
 	local isEquippableForOffspec = false
 	if fullItemInfo ~= nil and characterName ~= nil then
-		if fullItemInfo[FII_IS_EQUIPPABLE] or fullItemInfo[FII_IS_RELIC] then
+		if fullItemInfo[FII_IS_EQUIPPABLE] or fullItemInfo[FII_IS_RELIC] or fullItemInfo[FII_IS_TIER] then
 			local requiredLevel = fullItemInfo[FII_REQUIRED_LEVEL]
 			local itemEquipLoc = fullItemInfo[FII_ITEM_EQUIP_LOC]
 			local itemClass = fullItemInfo[FII_CLASS]
@@ -1135,15 +1164,19 @@ local function IsEquippableItemForCharacter(fullItemInfo, characterName, current
 				INRLR_SendDebugMessage('Unable to determine class and spec in InEquippableItemForCharacter()!!!! for ' .. characterName)
 				return false  -- should never reach here, but if we do it means we're not looking up the player or anyone in cache
 			end
-			
+
 			-- check if character is a high enough level to equip the item
 			if INRLR_CHECK_CHARACTER_LEVEL and requiredLevel > characterLevel then
 				return false
 			end
-			
+
 			isEquippableForClass = itemEquipLoc == 'INVTYPE_CLOAK' -- cloaks show up as type=armor, subtype=cloth, but they're equippable by all, so set to true if cloak
+			if fullItemInfo[FII_IS_TIER] then -- Tier shows as junk, but set to true so that the FI_CLASSES can be checked on the item.
+				isEquippableForClass = true
+					-- DEFAULT_CHAT_FRAME:AddMessage('Checking IsTier:' .. tostring(isEquippableForClass),1,0,0)
+			end
 			local i = 1
-			
+
 			while not isEquippableForClass and ValidGear[i] do
 				if class == ValidGear[i][1] and itemClass == ValidGear[i][2] and itemSubclass == ValidGear[i][3] then
 					isEquippableForClass = true
@@ -1153,16 +1186,18 @@ local function IsEquippableItemForCharacter(fullItemInfo, characterName, current
 
 			-- check whether to item is a class restricted item (ex: tier)
 			if fullItemInfo[FII_CLASSES] ~= nil then
-				if not string.find(class, fullItemInfo[FII_CLASSES]) then
+				--DEFAULT_CHAT_FRAME:AddMessage('Checking Classes:' .. tostring(fullItemInfo[FII_CLASSES] .. ' against player class ' .. class .. ' Result: ' .. tostring(string.find(fullItemInfo[FII_CLASSES], class))),1,0,0)
+				if not string.find(fullItemInfo[FII_CLASSES], class) then
 					isEquippableForClass = false
 				end
 			end
-			
-			if isEquippableForClass then
-				if itemEquipLoc == 'INVTYPE_TRINKET' then
+			--DEFAULT_CHAT_FRAME:AddMessage('After Checking for Classes substring:' .. tostring(isEquippableForClass),1,0,0)
+
+			if isEquippableForClass then -- Equippable items, and tier tokens are here from the Class validation above
+				if itemEquipLoc == 'INVTYPE_TRINKET' then -- Evaluate trinkets
 					item = fullItemInfo[FII_ITEM]
 					if spec == 105 or spec == 270 or spec == 65 or spec == 256 or spec == 257 or spec == 264 then
-						isEquippableForSpec = IsTrinketUsable(item, 'Healer')					
+						isEquippableForSpec = IsTrinketUsable(item, 'Healer')
 					elseif spec == 250 or spec == 581 or spec == 104 or spec == 268 or spec == 66 or spec == 73 then
 						isEquippableForSpec = IsTrinketUsable(item, 'Tank')
 					elseif spec == 577 or spec == 103 or spec == 253 or spec == 254 or spec == 255 or spec == 269 or spec == 259 or spec == 260 or spec == 261 or spec == 263 then
@@ -1172,7 +1207,7 @@ local function IsEquippableItemForCharacter(fullItemInfo, characterName, current
 					elseif spec == 102 or spec == 62 or spec == 63 or spec == 64 or spec == 258 or spec == 262 or spec == 265 or spec == 266 or spec == 267 then
 						isEquippableForSpec = IsTrinketUsable(item, 'IntellectDPS')
 					end
-						
+
 					if not currentSpecOnly and not isEquippableForSpec then
 						if class == DEATH_KNIGHT or class == WARRIOR then
 							isEquippableForOffspec = IsTrinketUsable(item, 'Tank') or IsTrinketUsable(item, 'StrengthDPS')
@@ -1190,7 +1225,11 @@ local function IsEquippableItemForCharacter(fullItemInfo, characterName, current
 							isEquippableForOffspec = IsTrinketUsable(item, 'Healer') or IsTrinketUsable(item, 'IntellectDPS') or IsTrinketUsable(item, 'AgilityDPS')
 						end
 					end
-				else
+				elseif fullItemInfo[FII_IS_TIER] then -- Auto passing the spec check for tier tokens
+					-- Since it is equippable but not a trinket, and also does not have attributes, set isEquippableForSpec here to qualify for the return value
+					isEquippableForSpec = true
+					--DEFAULT_CHAT_FRAME:AddMessage('Checking Tier isEquippableForSpec:' .. tostring(isEquippableForSpec),1,0,0)
+				else -- evaluating normal armor items by primary stat
 					local itemPrimaryAttribute = GetItemPrimaryAttribute(fullItemInfo[FII_ITEM])
 					if itemPrimaryAttribute == nil then
 						isEquippableForSpec = true  -- if there's no primary attr (ex: ring/neck), then the item is equippable by everyone
@@ -1251,10 +1290,19 @@ local function IsEquippableItemForCharacter(fullItemInfo, characterName, current
 					isEquippableForClass = isEquippableForSpec or isEquippableForOffspec
 				end
 			end
+		else
+			--DEFAULT_CHAT_FRAME:AddMessage('Item was not equippable. FII_CLASS: ' .. tostring(fullItemInfo[FII_CLASS]) .. ' SUB_CLASS: ' .. tostring(fullItemInfo[FII_SUB_CLASS]) .. ' MOUNT: ' .. tostring(LE_ITEM_MISCELLANEOUS_MOUNT) .. ' PET: ' .. tostring(LE_ITEM_MISCELLANEOUS_COMPANION_PET) ,1,0,0)
+			if (fullItemInfo[FII_SUB_CLASS] == LE_ITEM_MISCELLANEOUS_MOUNT) or (fullItemInfo[FII_SUB_CLASS] == LE_ITEM_MISCELLANEOUS_COMPANION_PET) then
+				--DEFAULT_CHAT_FRAME:AddMessage('Mount or a Pet',1,0,0)
+				-- Since it's a mount or pet, treat it as equippable for eligibility check
+				isEquippableForClass = true
+				isEquippableForSpec = true
+			end
+
 		end
 	end
 --	INRLR_SendDebugMessage('For ' .. characterName .. ' item ' .. item .. ' isEquippableForClass = ' .. tostring(isEquippableForClass) .. ' and isEquippableForSpec = ' .. tostring(isEquippableForSpec)  .. ' and isEquippableForOffspec = ' .. tostring(isEquippableForOffspec))
-	
+	--DEFAULT_CHAT_FRAME:AddMessage('For:' .. characterName .. ' isEquippableForClass = ' .. tostring(isEquippableForClass) .. ' and isEquippableForSpec = ' .. tostring(isEquippableForSpec)  .. ' and isEquippableForOffspec = ' .. tostring(isEquippableForOffspec),1,0,0)
 	return isEquippableForClass and (isEquippableForSpec or isEquippableForOffspec)
 end
 
@@ -1309,7 +1357,7 @@ local function IsAnUpgradeForCharacter(fullItemInfo, characterName)
 	local equippedILVL = 0
 	local itemEquipLoc = fullItemInfo[FII_ITEM_EQUIP_LOC]
 	local itemRealILVL = fullItemInfo[FII_REAL_ILVL]
-	
+
 	if itemEquipLoc ~= nil and itemEquipLoc ~= '' then
 		if itemEquipLoc == 'INVTYPE_FINGER' then
 			local equippedItem0 = GetEquippedItem(characterName, 11)	-- 1st ring
@@ -1443,7 +1491,7 @@ local function GetNames(namelist, limit)
 					i = i + 1
 				end
 			end
-		
+
 			names = sortedNamelist[1]
 			local maxnames = min(#sortedNamelist, limit)
 			for i = 2, maxnames do
@@ -1510,7 +1558,7 @@ function INRLR_ApplyFrameTexture(frame, characterName, item)
 		-- create the texture to display in the raid frames
 		if not raidFrameTextures[characterName] then
 			raidFrameTextures[characterName] = frame:CreateTexture(nil, "OVERLAY")
-			raidFrameTextures[characterName]:SetPoint("BOTTOM", 0, 2) 
+			raidFrameTextures[characterName]:SetPoint("BOTTOM", 0, 2)
 			raidFrameTextures[characterName]:SetWidth(INRLR_HIGHLIGHT_SIZE)
 			raidFrameTextures[characterName]:SetHeight(INRLR_HIGHLIGHT_SIZE)
 		end
@@ -1539,7 +1587,7 @@ function INRLR_ApplyFrameTexture(frame, characterName, item)
 				end
 			end)
 			raidFrameTooltips[characterName]:RegisterEvent("MODIFIER_STATE_CHANGED")
-		end)		
+		end)
 
 		raidFrameTooltips[characterName]:SetScript("OnLeave", function(self)
 			raidFrameTooltips[characterName]:SetScript("OnEvent", nil)
@@ -1549,7 +1597,7 @@ function INRLR_ApplyFrameTexture(frame, characterName, item)
 
 		raidFrameTextures[characterName]:Show()
 		raidFrameTooltips[characterName]:Show()
-		
+
 	end
 end
 
@@ -1625,16 +1673,16 @@ end
 
 local function LootReceivedEvent(self, event, ...)
 	local message, _, _, _, looter = ...
-	
+
 --	local _, _, lootedItem = string.find(message, '(|.+|r)')
-	
+
 	local lootedItem = message:match(LOOT_ITEM_SELF_PATTERN)
 	if lootedItem == nil then
 		_, lootedItem = message:match(LOOT_ITEM_PATTERN)
 	end
-	
+
 	if lootedItem then
-		local fullItemInfo = GetFullItemInfo(lootedItem)
+		local fullItemInfo = (lootedItem)
 		if ShouldBeEvaluated(fullItemInfo) then
 			if not string.find(looter, '-') then
 				looter = INRLR_GetUnitNameWithRealm(looter)
@@ -1642,7 +1690,7 @@ local function LootReceivedEvent(self, event, ...)
 			PerformNotify(fullItemInfo, looter)
 		end
 	end
-end	
+end
 
 local function QueueItem(sender, item)
 	queuedRollOwners[numOfQueuedRollItems] = sender
@@ -1655,7 +1703,7 @@ local function AskForRolls()
 		currentRollOwner = queuedRollOwners[numOfQueuedRollItems - 1]
 		currentRollItem = queuedRollItems[numOfQueuedRollItems - 1]
 		numOfQueuedRollItems = numOfQueuedRollItems - 1
-		
+
 		local fullItemInfo = GetFullItemInfo(currentRollItem)
 		local description = " ("
 		if fullItemInfo[FII_REAL_ILVL] ~= nil then
@@ -1671,16 +1719,20 @@ local function AskForRolls()
 					description = description .. fullItemInfo[FII_SUB_TYPE] .. " " .. _G[fullItemInfo[FII_ITEM_EQUIP_LOC]]
 				end
 			else
-				description = description .. fullItemInfo[FII_SUB_TYPE]
+				if fullItemInfo[FII_IS_TIER] then
+					description = description .. "Tier"
+				else
+					description = description .. fullItemInfo[FII_SUB_TYPE]
+				end
 			end
-			
 		end
 		description = description .. ")"
+		INRLR_SendBroadcast('==-- New Roll Starting --== ', true)
 		INRLR_SendBroadcast('Roll for ' .. currentRollItem .. description .. ' from ' .. INRLR_GetNameWithoutRealm(currentRollOwner), true)
 
 		local FiveSecondWarningDisplayed = false
 		local FifteenSecondWarningDisplayed = false
-		
+
 		rollDelayFrame:SetScript('OnUpdate', function(self, elapsed)
 			delay = delay + elapsed
 --			if currentRollItem == nil then
@@ -1713,7 +1765,7 @@ function INRLR_EndRolls()
 	-- clear the countdown for the existing roll
 	rollDelayFrame:SetScript('OnUpdate', nil)
 	delay = 0
-	
+
 	-- determine the winner(s)
 	local winners = nil
 	local highRoll = 0
@@ -1726,7 +1778,7 @@ function INRLR_EndRolls()
 			table.insert(winners, name)
 		end
 	end
-	
+
 	-- notify everyone of the results of the rolls
 	if winners ~= nil then
 		if #winners > 1 then
@@ -1749,9 +1801,9 @@ function INRLR_EndRolls()
 				AskForRolls()
 			end
 		end)
-	else			
+	else
 		ClearRolls()
-	end	
+	end
 end
 
 local function GetItemFromQueueByPlayer(player)
@@ -1797,7 +1849,7 @@ local function ProcessWhisper(message, sender)
 				-- if we're still rolling for another item, let the person know their item is queued
 				if currentRollItem ~= nil then
 					INRLR_SendWhisper('Thank you! ' .. item .. ' will be rolled for after current rolls are done.', sender)
-				else 
+				else
 					AskForRolls()
 				end
 			elseif currentRollOwner == sender then
@@ -1830,12 +1882,12 @@ local function BNWhisperReceivedEvent(self, event, ...)
 	if realmName ~= nil then
 		sender = sender .. '-' .. realmName
 	end
-	
+
 	ProcessWhisper(message, sender)
 end
 
 local function RollReceivedEvent(self, event, ...)
-	DEFAULT_CHAT_FRAME:AddMessage("In RollReceivedEvent",1,0,0);
+	-- DEFAULT_CHAT_FRAME:AddMessage("In RollReceivedEvent",1,0,0);
 	if currentRollItem ~= nil then
 		local message = select(1, ...)
 		if message then
@@ -1849,10 +1901,10 @@ local function RollReceivedEvent(self, event, ...)
 					INRLR_SendBroadcast(name .. ' rolled multiple times; only the first roll of ' .. currentRolls[name] .. ' counts', false)
 				elseif fullname ~= nil and not IsEquippableItemForCharacter(GetFullItemInfo(currentRollItem), fullname, false) then
 					INRLR_SendBroadcast(name .. ' is not eligible for ' .. currentRollItem .. '; roll ignored', false)
-				else 
+				else
 					currentRolls[name] = roll
 				end
-			end		
+			end
 		end
 	end
 end
@@ -1906,7 +1958,7 @@ local function UpdateGroupInfoCache(unit)
 				characterDetails['InspectCount'] = characterDetails['InspectCount'] + 1
 			end
 		end
-		
+
 		local updatedItemCount = 0
 		local item
 		for i = _G.INVSLOT_FIRST_EQUIPPED, _G.INVSLOT_LAST_EQUIPPED do
@@ -1914,13 +1966,13 @@ local function UpdateGroupInfoCache(unit)
 				item = GetInventoryItemLink(UnitName(unit), i)
 				if item ~= nil then
 					if characterDetails[i] == nil or characterDetails[i] ~= item then
---					INRLR_SendDebugMessage('      adding/updating item ' .. item)			
+--					INRLR_SendDebugMessage('      adding/updating item ' .. item)
 						updatedItemCount = updatedItemCount + 1
 						characterDetails[i] = nil  -- remove existing first
 						characterDetails[i] = item
 						characterDetails['InspectCount'] = 0  -- if we actually updated something, reset the inspect counter
 					end
-					
+
 					-- if we're adding the weapon, also add relics
 					if i == _G.INVSLOT_MAINHAND or i == _G.INVSLOT_OFFHAND then
 						item = select(2, GetItemInfo(item))  -- hack since relics may not be loaded into cache right away, query the item again
@@ -1988,7 +2040,7 @@ local function InspectGroupMember(characterName)
 	return false
 end
 
--- An Inspect Loop (managed by inspectLoop) is a complete iteration of inspection for every member in the group.  
+-- An Inspect Loop (managed by inspectLoop) is a complete iteration of inspection for every member in the group.
 -- 		Will only attempt to inspect characters whose count of cached items is lower than expected.
 --      The goal of this loop is to work around the limitation whereby the inspect API doesn't necessarily provide us
 --      all items equipped by the character.
@@ -2034,7 +2086,7 @@ function INRLR_InspectNextGroupMember()
 			if not string.find(fullname, '-') then
 				fullname = INRLR_GetFullName(characterName, GetRealmName())
 			end
-			
+
 			if fullname ~= nil then
 				expectedItemCount = NUM_EXPECTED_ITEMS
 				expectedRelicCount = 0
@@ -2060,7 +2112,7 @@ function INRLR_InspectNextGroupMember()
 		end
 		inspectIndex = inspectIndex + 1
 	end
-	
+
 	-- The following logic is meant to work around a limitation of the inspect API.  When you inspect a character, you're
 	-- not guaranteed to actually receive all of their equipped items back!  To work around this limitation, we will
 	-- perform additional loops of inspecting each character if the number of items we've cached for them is fewer than
@@ -2083,7 +2135,7 @@ function INRLR_InspectNextGroupMember()
 --			INRLR_PrintCache()
 		end
 	end
-	
+
 end
 
 -- note that the INSPECT_READY event may have been triggered by WoW or by another addon
@@ -2104,10 +2156,10 @@ end
 
 local function PopulateGroupInfoCache()
 	local now = time()
-	
+
 	if now - priorCacheRefreshTime > 3 then  -- only refresh if prior refresh was more than 3 seconds ago
 		priorCacheRefreshTime = now
-	
+
 		-- remove characters from the cache if they're no long in the raid/party
 		for name, details in pairs (groupInfoCache) do
 			if not IsCharacterInGroup(name) then
@@ -2161,14 +2213,14 @@ end
 local function EnableOrDisable()
 --	INRLR_SendDebugMessage('Entering EnableOrDisable()')
 	local shouldBeEnabled = IsPersonalLoot()
-	if not isEnabled and shouldBeEnabled then	
+	if not isEnabled and shouldBeEnabled then
 		INRLR_SendDebugMessage('...Enabling InRLR')
 		Enable()
 	elseif isEnabled and not shouldBeEnabled then
 		INRLR_SendDebugMessage('...Disabling InRLR')
 		Disable()
 	end
-	if isEnabled then 
+	if isEnabled then
 		INRLR_SendDebugMessage('...Calling PopulateGroupInfoCache()')
 		PopulateGroupInfoCache()
 	end
@@ -2214,7 +2266,7 @@ local function CombatStatusChangedEvent(self, event, ...)
 end
 
 function SlashCmdList.InRLootRollCommand(msg, editbox)
-	 DEFAULT_CHAT_FRAME:AddMessage("In Slash Handler",1,0,0);
+	 -- DEFAULT_CHAT_FRAME:AddMessage("In Slash Handler",1,0,0);
 	if msg == nil or msg == '' then
 		InterfaceOptionsFrame_OpenToCategory(INRLR_LONG_ADDON_NAME)
 		InterfaceOptionsFrame_OpenToCategory(INRLR_LONG_ADDON_NAME)  -- hack; called twice to get around Blizz bug of it not opening to correct page right away
@@ -2229,8 +2281,8 @@ function SlashCmdList.InRLootRollCommand(msg, editbox)
 		else
 			INRLR_SendUserMessage('There are currently no items being rolled for')
 		end
---	elseif msg == 'test' then
---		INRLR_UnitTest()
+	elseif msg == 'test' then
+		INRLR_UnitTest()
 	else
 		INRLR_SendUserMessage('Unknown parameter. Options are:\n  [/inrlr]  :  open interface options\n  [/inrlr endroll]  :  force current roll to end')
 	end
@@ -2239,9 +2291,9 @@ end
 local function Initialize(self, event, addonName, ...)
 		-- DEFAULT_CHAT_FRAME:AddMessage(addonName,1,0,0);
 	if addonName == 'InRLootRoll' then
-	
+
 		INRLR_SendDebugMessage('InR Loot Roll Initializing')
-		
+
 		if INRLR_MIN_QUALITY == nil then
 			INRLR_NOTIFY_MODE = DEFAULT_NOTIFY_MODE
 			INRLR_INCLUDE_BOE = DEFAULT_INCLUDE_BOE
@@ -2250,7 +2302,7 @@ local function Initialize(self, event, addonName, ...)
 			INRLR_DEBUG = DEFAULT_DEBUG
 			INRLR_CURRENT_SPEC_ONLY = DEFAULT_CURRENT_SPEC_ONLY
 		end
-		
+
 		-- need global variable option added in version 1.21
 		if INRLR_CHECK_CHARACTER_LEVEL == nil then
 			INRLR_CHECK_CHARACTER_LEVEL = DEFAULT_CHECK_CHARACTER_LEVEL
@@ -2259,7 +2311,7 @@ local function Initialize(self, event, addonName, ...)
 			INRLR_HIGHLIGHT_RAID_FRAMES = DEFAULT_HIGHLIGHT_RAID_FRAMES
 			INRLR_HIGHLIGHT_SIZE = DEFAULT_HIGHLIGHT_SIZE
 		end
-		
+
 		if lootReceivedEventFrame == nil then
 
 			lootReceivedEventFrame = CreateFrame('Frame')
@@ -2282,10 +2334,10 @@ local function Initialize(self, event, addonName, ...)
 			rosterUpdatedEventFrame:RegisterEvent('GROUP_ROSTER_UPDATE')
 			rosterUpdatedEventFrame:RegisterEvent('ZONE_CHANGED_NEW_AREA')
 			rosterUpdatedEventFrame:RegisterEvent('PLAYER_ENTERING_WORLD')
-			
+
 			groupMemberInfoChangedEventFrame = CreateFrame('Frame')
 			groupMemberInfoChangedEventFrame:SetScript('OnEvent', GroupMemberInfoChangedEvent)
-			
+
 			combatStatusChangedEventFrame = CreateFrame('Frame')
 			combatStatusChangedEventFrame:SetScript('OnEvent', CombatStatusChangedEvent)
 
@@ -2296,8 +2348,8 @@ local function Initialize(self, event, addonName, ...)
 			whisperReceivedEventFrame:RegisterEvent('CHAT_MSG_WHISPER')
 			bnWhisperReceivedEventFrame:RegisterEvent('CHAT_MSG_BN_WHISPER')
 		end
-		
-		INRLR_CreateOptionsPanel()		
+
+		INRLR_CreateOptionsPanel()
 	end
 end
 
@@ -2318,7 +2370,7 @@ function INRLR_PrintCache(showDetails, characterName)
 		local item_msg = ''
 		for name, characterDetails in pairs(groupInfoCache) do
 			num_characters = num_characters + 1
-			item_msg = item_msg .. INRLR_GetItemCountFromCache(name) .. '/' .. INRLR_GetRelicCountFromCache(name) .. ' ' 
+			item_msg = item_msg .. INRLR_GetItemCountFromCache(name) .. '/' .. INRLR_GetRelicCountFromCache(name) .. ' '
 --			item_msg = item_msg .. (#groupInfoCache[name] -1) .. ' '  -- subtracting 1 since everyone will have a ClassName element
 		end
 		INRLR_SendDebugMessage('Cache contains ' .. num_characters .. ' member(s). Item count per member: ' .. item_msg)
@@ -2327,7 +2379,7 @@ function INRLR_PrintCache(showDetails, characterName)
 			for name, details in pairs (groupInfoCache) do
 				if name == nil or name == characterName then
 					INRLR_SendDebugMessage('Cache information for ' .. name)
-					if details == nil then	
+					if details == nil then
 						INRLR_SendDebugMessage('   details is nil')
 					else
 						for slotID, item in pairs(details) do
@@ -2362,27 +2414,27 @@ function INRLR_TestItems(characterIndex)
 		if not string.find(characterName, '-') then
 			characterName = INRLR_GetFullName(characterName, GetRealmName())
 		end
-		
+
 		INRLR_SendDebugMessage('Evaluating items equipped by ' .. characterName)
 
 		local item
 		for itemIndex = 1, 19 do
 			if characterName == INRLR_GetUnitNameWithRealm('player') then
-				item = GetInventoryItemLink('player', itemIndex)	
+				item = GetInventoryItemLink('player', itemIndex)
 			else
 				item = groupInfoCache[characterName][itemIndex]
 			end
 
 			if item ~= nil then
 				INRLR_SendDebugMessage('   evaluating ' .. item)
-				
+
 				local isEquippable
 				for evalIndex = 1, GetNumGroupMembers() do
 					evalName = select(1, GetRaidRosterInfo(evalIndex))
 					if not string.find(evalName, '-') then
 						evalName = INRLR_GetFullName(evalName, GetRealmName())
 					end
-				
+
 					isEquippable = IsEquippableItemForCharacter(item, evalName, INRLR_CURRENT_SPEC_ONLY)
 					INRLR_SendDebugMessage('      For ' .. evalName ..
 						' equippable = ' .. tostring(isEquippable) ..
@@ -2391,7 +2443,7 @@ function INRLR_TestItems(characterIndex)
 				end
 			end
 		end
-		
+
 		local relic
 		for relicIndex = 1, 3 do
 			if characterName == INRLR_GetUnitNameWithRealm('player') then
@@ -2403,14 +2455,14 @@ function INRLR_TestItems(characterIndex)
 
 			if relic ~= nil then
 				INRLR_SendDebugMessage('   evaluating ' .. relic)
-				
+
 				local isEquippable
 				for evalIndex = 1, GetNumGroupMembers() do
 					evalName = select(1, GetRaidRosterInfo(evalIndex))
 					if not string.find(evalName, '-') then
 						evalName = INRLR_GetFullName(evalName, GetRealmName())
 					end
-				
+
 					isEquippable = IsEquippableItemForCharacter(relic, evalName, INRLR_CURRENT_SPEC_ONLY)
 					INRLR_SendDebugMessage('      For ' .. evalName ..
 						' equippable = ' .. tostring(isEquippable) ..
@@ -2428,11 +2480,11 @@ function INRLR_TestHighlight(item)
 end
 
 function INRLR_Test(item)
-	print("IsEquippableItemForCharacter = ", IsEquippableItemForCharacter(GetFullItemInfo(item), "Madone-Zul'jin", INRLR_CURRENT_SPEC_ONLY))
-	print("IsAnUpgradeForCharacter = ", IsAnUpgradeForCharacter(GetFullItemInfo(item), "Madone-Zul'jin"))
+	print("IsEquippableItemForCharacter = ", IsEquippableItemForCharacter(GetFullItemInfo(item), "Arkest-Zul'jin", INRLR_CURRENT_SPEC_ONLY))
+	print("IsAnUpgradeForCharacter = ", IsAnUpgradeForCharacter(GetFullItemInfo(item), "Arkest-Zul'jin"))
 	print("IsAnUpgradeForAnyCharacter = ", IsAnUpgradeForAnyCharacter(GetFullItemInfo(item)))
 
-	print("IsEquippableItemForCharacter = ", IsEquippableItemForCharacter(GetFullItemInfo(item), "Madknight-Zul'jin", INRLR_CURRENT_SPEC_ONLY))
-	print("IsAnUpgradeForCharacter = ", IsAnUpgradeForCharacter(GetFullItemInfo(item), "Madknight-Zul'jin"))
+	print("IsEquippableItemForCharacter = ", IsEquippableItemForCharacter(GetFullItemInfo(item), "Arkest-Zul'jin", INRLR_CURRENT_SPEC_ONLY))
+	print("IsAnUpgradeForCharacter = ", IsAnUpgradeForCharacter(GetFullItemInfo(item), "Arkest-Zul'jin"))
 
 end

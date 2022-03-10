@@ -14,7 +14,7 @@ function INRLR_CreateOptionsPanel()
 	TitleLabel:SetText(INRLR_LONG_ADDON_NAME)
 
 	-- [[ Version ]] --
-	local AddonVersion = GetAddOnMetadata("PersonalLootHelper", "Version")
+	local AddonVersion = GetAddOnMetadata("InRLootRoll", "Version")
 	local VersionLabel = INRLRConfigFrame:CreateFontString(nil, 'ARTWORK', 'GameFontNormalSmall')
 	VersionLabel:SetPoint('BOTTOMLEFT', TitleLabel, 'BOTTOMRIGHT', 8, 0)
 	VersionLabel:SetText('v' .. AddonVersion)
@@ -99,7 +99,7 @@ function INRLR_CreateOptionsPanel()
 	_G[INRLR_HighlightSizeSlider:GetName().."Low"]:SetText("small")
 	_G[INRLR_HighlightSizeSlider:GetName().."Text"]:SetText("icon size")
 	INRLR_HighlightSizeSlider:SetValue(INRLR_HIGHLIGHT_SIZE)
-	
+
 	--[[ Thank you message ]] --
 	local ThankYouLabel = INRLRConfigFrame:CreateFontString(nil, 'ARTWORK', 'GameFontNormal')
 	ThankYouLabel:SetPoint('BOTTOM', INRLRConfigFrame, 'BOTTOM', 0, 48)

@@ -5,8 +5,17 @@ to easily populate these arrays:
 	=concatenate(b1;", -- ";d1)
 	ensure curly quotes are off in tools -> autocorrect options -> localized options
 	to obtain IDs: http://www.wowhead.com/items/armor/trinkets/role:1?filter=166:151;7:1;0:0#0-3+2
-]]--	
+]]--
 INRLR_TRINKET_AGILITY_DPS = {
+	-- 9.2 trinkets
+	188265, -- Cache of Acquired Treasures
+	188267, -- Bells of the Endless Feast
+	188252, -- Chains of Domination
+	188264, -- Earthbreaker's Impact
+	188270, -- Elegy of the Eternals
+	188271, -- The First Sigil
+	188253, -- Scars of Fraternal Strife
+
 	-- 9.0 trinkets
 	184030, -- Dreadfire Vessel
 	184026, -- Hateful Chain
@@ -19,9 +28,9 @@ INRLR_TRINKET_AGILITY_DPS = {
 	174044, -- Humming Black Dragonscale
 	173946, -- Writhing Segment of Drest'agath
 	174528, -- Void-Twisted Titanshard
-	173943, -- Torment in a Jar 
+	173943, -- Torment in a Jar
 	174500, -- Vita-Charged Titanshard
-	
+
 	-- 8.1 trinkets
 	165568, -- Invocation of Yu'lon
 	165579, -- Kinbul's Razor Claw
@@ -30,7 +39,7 @@ INRLR_TRINKET_AGILITY_DPS = {
 	-- 8.0 trinkets
 	160648, 	-- Frenetic Corpuscle
 	160652, 	-- Construct Overcharger
-	
+
 	-- 7.3 trinkets
 	152288, -- 7.3 Raid - Antorus - Boss 11 - Trinket Ranged WS
 	152285, -- 7.3 Raid - Antorus - Boss 11 - Trinket Melee Str WS
@@ -49,7 +58,7 @@ INRLR_TRINKET_AGILITY_DPS = {
 	152781, -- Unblemished Sigil of Argus
 	152783, -- Mac'aree Focusing Amethyst
 	153172, -- Doomed Exarch's Memento
-	
+
 	-- 7.2.5 trinkets
 	151190, -- Specter of Betrayal
 	150526,	-- Shadowmoon Insignia
@@ -66,11 +75,11 @@ INRLR_TRINKET_AGILITY_DPS = {
 	147009, -- Infernal Cinders
 	147015, -- Engine of Eradication
 	147010, -- Cradle of Anguish
-	
+
 	-- 7.1.5 and previously missed 7.1 trinkets
 	142506, -- Eye of Guarm
 	142166, -- Ethereal Urn
-	
+
 	-- 7.1 trinkets
 	140027, -- Ley Spark
 	142164, -- Toe Knee's Promise
@@ -133,13 +142,21 @@ INRLR_TRINKET_AGILITY_DPS = {
 }
 
 INRLR_TRINKET_INTELLECT_DPS = {
+	-- 9.2 trinkets
+	188270, -- Elegy of the Eternals
+	188271, -- The First Sigil
+	188268, -- Architect's Ingenuity Core
+	188254, -- Grim Eclipse
+	188272, -- Resonant Reservoir
+	188253, -- Scars of Fraternal Strife
+
 	-- 9.0 trinkets
 	184028, -- Cabalist's Hymnal
 	184030, -- Dreadfire Vessel
 	184021, -- Glyph of Assimilation
 	184024, -- Macabre Sheet of Music
 	184019, -- Soul Igniter
-	
+
 	-- 8.3 trinkets
 	174044, -- Humming Black Dragonscale
 	174060, -- Psyche Shredder
@@ -147,17 +164,17 @@ INRLR_TRINKET_INTELLECT_DPS = {
 	174528, -- Void-Twisted Titanshard
 	174500, -- Vita-Charged Titanshard
 	173944, -- Forbidden Obsidian Claw
-	
+
 	-- 8.1 trinkets
 	165571, -- Incandescent Sliver
 	165581, -- Crest of Pa'ku
 	165576, -- Tidestorm Codex
 	166418, -- Crest of Pa'ku
-	
+
 	-- 8.0 trinkets
 	160656, 	-- Twitching Tentacle of Xalzaix
 	160651,	-- Vigilant's Bloodshaper
-	
+
 
 	-- 7.3 trinkets
 	152288, -- 7.3 Raid - Antorus - Boss 11 - Trinket Ranged WS
@@ -171,11 +188,11 @@ INRLR_TRINKET_INTELLECT_DPS = {
 	152783, -- Mac'aree Focusing Amethyst
 	153172, -- Doomed Exarch's Memento
 	151310, -- Reality Breacher
-	
+
 	-- 7.2.5 trinkets
 	150522,	-- The Skull of Gul'dan
 	150388,	-- Hibernation Crystal
-	
+
 	-- 7.2 trinkets
 	147276, -- Spellbinder's Seal
 	144480, -- Dreadstone of Endless Shadows
@@ -184,7 +201,7 @@ INRLR_TRINKET_INTELLECT_DPS = {
 	147017, -- Tarnished Sentinel Medallion
 	147018, -- Spectral Thurible
 	147002, -- Charm of the Rising Tide
-	
+
 	-- 7.1.5 and previously missed 7.1 trinkets
 	142166, -- Ethereal Urn
 
@@ -193,7 +210,7 @@ INRLR_TRINKET_INTELLECT_DPS = {
 	142160, -- Mrrgria's Favor
 	142165, -- Deteriorated Construct Core
 	142157, -- Aran's Relaxing Ruby
-	
+
 	137419, -- Chrono Shard
 	133642, -- Horn of Valor
 	141482, -- Unstable Arcanocrystal
@@ -235,6 +252,15 @@ INRLR_TRINKET_INTELLECT_DPS = {
 }
 
 INRLR_TRINKET_STRENGTH_DPS = {
+	-- 9.2 trinkets
+	188267, -- Bells of the Endless Feast
+	188252, -- Chains of Domination
+	188264, -- Earthbreaker's Impact
+	188270, -- Elegy of the Eternals
+	188271, -- The First Sigil
+	188255, -- Heart of the Swarm
+	188253, -- Scars of Fraternal Strife
+
 	-- 9.0 trinkets
 	184030, -- Dreadfire Vessel
 	184023, -- Gluttonous Spike
@@ -247,9 +273,9 @@ INRLR_TRINKET_STRENGTH_DPS = {
 	174044, -- Humming Black Dragonscale
 	173946, -- Writhing Segment of Drest'agath
 	174528, -- Void-Twisted Titanshard
-	173943, -- Torment in a Jar 
+	173943, -- Torment in a Jar
 	174500, -- Vita-Charged Titanshard
-	
+
 	-- 8.1 trinkets
 	165570, -- Everchill Anchor
 	165574, -- Grong's Primal Rage
@@ -258,7 +284,7 @@ INRLR_TRINKET_STRENGTH_DPS = {
 	-- 8.0 trinkets
 	160655, 	-- Syringe of Bloodborne Infirmity
 	160650, 	-- Disc of Systematic Regression
-	
+
 	-- 7.3 trinkets
 	152285, -- 7.3 Raid - Antorus - Boss 11 - Trinket Melee Str WS
 	152701, -- 7.3 Raid - Antorus - Boss 11 - Trinket Melee Agi WS
@@ -273,7 +299,7 @@ INRLR_TRINKET_STRENGTH_DPS = {
 	152783, -- Mac'aree Focusing Amethyst
 	153172, -- Doomed Exarch's Memento
 	151307, -- Void Stalker's Contract
-	
+
 	-- 7.2.5 trinkets
 	151190, -- Specter of Betrayal
 	150526,	-- Shadowmoon Insignia
@@ -287,7 +313,7 @@ INRLR_TRINKET_STRENGTH_DPS = {
 	147009, -- Infernal Cinders
 	147015, -- Engine of Eradication
 	147010, -- Cradle of Anguish
-	
+
 	-- 7.1.5 and previously missed 7.1 trinkets
 	142166, -- Ethereal Urn
 	142508, -- Chains of the Valorous
@@ -297,7 +323,7 @@ INRLR_TRINKET_STRENGTH_DPS = {
 	142164, -- Toe Knee's Promise
 	142167, -- Eye of Command
 	142159, -- Bloodstained Handkerchief
-	
+
 	137419, -- Chrono Shard
 	133642, -- Horn of Valor
 	141482, -- Unstable Arcanocrystal
@@ -336,6 +362,14 @@ INRLR_TRINKET_STRENGTH_DPS = {
 
 INRLR_TRINKET_HEALER = {
 
+	-- 9.2 trinkets
+	188270, -- Elegy of the Eternals
+	188271, -- The First Sigil
+	188273, -- Auxillary Attendant Chime
+	188264, -- Reclaimers Intensity Core
+	188262, -- The Lion's Roar
+	188253, -- Scars of Fraternal Strife
+
 	-- 9.0 trinkets
 	184028, -- Cabalist's Hymnal
 	184022, -- Consumptive Infusion
@@ -349,18 +383,18 @@ INRLR_TRINKET_HEALER = {
 	174103, -- Manifesto of Madness
 	174528, -- Void-Twisted Titanshard
 	174500, -- Vita-Charged Titanshard
-	
+
 	--8.1 trinkets
 	165578, -- Mirror of Entwined Fate
 	165571, -- Incandescent Sliver
 	165569, -- Ward of Envelopment
 	165581, -- Crest of Pa'ku
 	166418, -- Crest of Pa'ku
-	
+
 	-- 8.0 trinkets
 	160656, 	-- Twitching Tentacle of Xalzaix
 	160649, 	-- Inoculating Extract
-	
+
 	-- 7.3 trinkets
 	152288, -- 7.3 Raid - Antorus - Boss 11 - Trinket Ranged WS
 	151959, -- 7.3 Raid - Antorus - Boss 11 - Trinket Healer WS
@@ -379,7 +413,7 @@ INRLR_TRINKET_HEALER = {
 	152781, -- Unblemished Sigil of Argus
 	152783, -- Mac'aree Focusing Amethyst
 	153172, -- Doomed Exarch's Memento
-	
+
 	-- 7.2.5 trinkets
 	150523,	-- Memento of Tyrande
 	150388,	-- Hibernation Crystal
@@ -397,7 +431,7 @@ INRLR_TRINKET_HEALER = {
 	147005, -- Chalice of Moonlight
 	147003, -- Barbaric Mindslaver
 	147006, -- Archive of Faith
-	
+
 	-- 7.1.5 and previously missed 7.1 trinkets
 	142166, -- Ethereal Urn
 	142507, -- Brinewater Slime in a Bottle
@@ -409,7 +443,7 @@ INRLR_TRINKET_HEALER = {
 	142158, -- Faith's Crucible
 	142165, -- Deteriorated Construct Core
 	142157, -- Aran's Relaxing Ruby
-	
+
 	137419, -- Chrono Shard
 	133642, -- Horn of Valor
 	141482, -- Unstable Arcanocrystal
@@ -463,6 +497,14 @@ INRLR_TRINKET_HEALER = {
 
 INRLR_TRINKET_TANK = {
 
+	-- 9.2 trinkets
+	188261, -- Intrusive Thoughtcage
+	188269, -- Pocket Protoforge
+	188266, -- Pulsating Riftshard
+	188270, -- Elegy of the Eternals
+	188271, -- The First Sigil
+	188253, -- Scars of Fraternal Strife
+
 	-- 9.0 trinkets
 	184017, -- Bargast's Leash
 	184026, -- Hateful Chain
@@ -479,15 +521,15 @@ INRLR_TRINKET_TANK = {
 	174500, -- Vita-Charged Titanshard
 	173940, -- Sigil of Warding
 	173944, -- Forbidden Obsidian Claw
-	
+
 	-- 8.1 trinkets
 	165573, -- Diamond-laced Refracting Prism
 	165577, -- Bwonsamdi's Bargain
-	
+
 	-- 8.0 trinkets
 	160648, -- Frenetic Corpuscle
 	160652, -- Construct Overcharger
-	160654,	-- Vanquished Tendril of G'huun, 
+	160654,	-- Vanquished Tendril of G'huun,
 	160653,	-- Xalzaix's Veiled Eye
 
 	-- 7.3 trinkets
@@ -502,11 +544,11 @@ INRLR_TRINKET_TANK = {
 	152781, -- Unblemished Sigil of Argus
 	152783, -- Mac'aree Focusing Amethyst
 	153172, -- Doomed Exarch's Memento
-	
+
 	-- 7.2.5 trinkets
 	150526,	-- Shadowmoon Insignia
-	150527,	-- Madness of the Betrayer	
-	
+	150527,	-- Madness of the Betrayer
+
 	-- 7.2 trinkets
 	147278, -- Stalwart Crest
 	147275, -- Beguiler's Talisman
@@ -517,7 +559,7 @@ INRLR_TRINKET_TANK = {
 	147025, -- Recompiled Guardian Module
 	147023, -- Leviathan's Hunger
 	147022, -- Feverish Carapace
-	
+
 	-- 7.1.5 and previously missed 7.1 trinkets
 	142506, -- Eye of Guarm
 	142166, -- Ethereal Urn
@@ -528,7 +570,7 @@ INRLR_TRINKET_TANK = {
 	142169, -- Raven Eidolon
 	142168, -- Majordomo's Dinner Bell
 	142161, -- Inescapable Dread
-	
+
 	137419, -- Chrono Shard
 	133642, -- Horn of Valor
 	141482, -- Unstable Arcanocrystal
